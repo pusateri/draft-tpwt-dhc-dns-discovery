@@ -2,8 +2,13 @@
 <!-- This template is for creating an Internet Draft using xml2rfc,
     which is available here: http://xml.resource.org. -->
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3646 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3646.xml">
+<!ENTITY RFC6066 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6066.xml">
 <!ENTITY RFC7227 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7227.xml">
+<!ENTITY RFC7469 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7469.xml">
+<!ENTITY RFC7858 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7858.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -37,76 +42,275 @@
     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
     they will automatically be output with "(if approved)" -->
   <!-- ***** FRONT MATTER ***** -->
-  <front>
-    <!-- The abbreviated title is used in the page header - it is only necessary if the 
-        full title is longer than 39 characters -->
-    <title abbrev="DNS-TLS DHCPv6 Option">DHCPv6 Option for encrypted DNS Discovery</title>
-    <author fullname="Tom Pusateri" initials="T.J." surname="Pusateri">
-      <organization>Unaffiliated</organization>
-      <address>
-        <postal>
-          <street></street>
-          <city>Raleigh</city>
-          <region>NC</region>
-          <code>27608</code>
-          <country>USA</country>
-        </postal>
-        <phone>+1 919 867 1330</phone>
-        <email>pusateri@bangj.com</email>
-      </address>
-    </author>
-    <author fullname="Willem Toorop" initials="W." surname="Toorop">
-            <organization>NLnet Labs</organization>
-            <address>
-                <postal>
-                    <street>Science Park 400</street>
-                    <city>Amsterdam</city>
-                    <region></region>
-                    <code>1098 XH</code>
-                    <country>Netherlands</country>
-                </postal>
-                <email>willem@nlnetlabs.nl</email>
-            </address>
-        </author>
-    <date year="2018"/>
-    <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
-        in the current day for you. If only the current year is specified, xml2rfc will fill 
-	 in the current day and month for you. If the year is not the current one, it is 
-	 necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
-	 purpose of calculating the expiry date).  With drafts it is normally sufficient to 
-	 specify just the year. -->
-    <!-- Meta-data Declarations -->
-    <area>DHC</area>
-    <workgroup>Internet Engineering Task Force</workgroup>
-    <!-- WG name at the upperleft corner of the doc,
-        IETF is fine for individual submissions.  
-	 If this element is not present, the default is "Network Working Group",
-        which is used by the RFC Editor as a nod to the history of the IETF. -->
-    <keyword>DHCPv6 Option DNS TLS DTLS DoH</keyword>
-    <!-- Keywords will be incorporated into HTML output
-        files in a meta tag but they have no effect on text or nroff
-        output. If you submit your draft to the RFC Editor, the
-        keywords will be used for the search engine. -->
-    <abstract>
-      <t>This draft provides a DHCPv6 option to a client for configuring a DNS server that supports encrypted requests/responses.</t>
-    </abstract>
-  </front>
-  <middle>
-    <section title="Introduction">
-      <t>As administrative domains are increasingly outsourcing their DNS, it is recommended that DNS requests no longer be sent in an unencrypted message. DNS over TLS is a common form of providing privacy to DNS but DTLS may also be supported. In order to use encrypted forms of DNS securely, more information is needed by the client than simply the IP address.</t>
-      <section title="Requirements Language">
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-       "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-       document are to be interpreted as described in <xref target="RFC2119">RFC 2119</xref>.</t>
-      </section>
-    </section>
+ <front>
+   <!-- The abbreviated title is used in the page header - it is only necessary if the 
+       full title is longer than 39 characters -->
+   <title abbrev="DNS-TLS DHCPv6 Option">DHCPv6 Option for encrypted DNS Discovery</title>
+   <author fullname="Tom Pusateri" initials="T.J." surname="Pusateri">
+     <organization>Unaffiliated</organization>
+     <address>
+       <postal>
+         <street></street>
+         <city>Raleigh</city>
+         <region>NC</region>
+         <code>27608</code>
+         <country>USA</country>
+       </postal>
+       <phone>+1 919 867 1330</phone>
+       <email>pusateri@bangj.com</email>
+     </address>
+   </author>
+   <author fullname="Willem Toorop" initials="W." surname="Toorop">
+           <organization>NLnet Labs</organization>
+           <address>
+               <postal>
+                   <street>Science Park 400</street>
+                   <city>Amsterdam</city>
+                   <region></region>
+                   <code>1098 XH</code>
+                   <country>Netherlands</country>
+               </postal>
+               <email>willem@nlnetlabs.nl</email>
+           </address>
+       </author>
+   <date year="2018"/>
+   <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+       in the current day for you. If only the current year is specified, xml2rfc will fill 
+ in the current day and month for you. If the year is not the current one, it is 
+ necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+ purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+ specify just the year. -->
+   <!-- Meta-data Declarations -->
+   <area>DHC</area>
+   <workgroup>Internet Engineering Task Force</workgroup>
+   <!-- WG name at the upperleft corner of the doc,
+       IETF is fine for individual submissions.  
+ If this element is not present, the default is "Network Working Group",
+       which is used by the RFC Editor as a nod to the history of the IETF. -->
+   <keyword>DHCPv6 Option DNS TLS DTLS DoH</keyword>
+   <!-- Keywords will be incorporated into HTML output
+       files in a meta tag but they have no effect on text or nroff
+       output. If you submit your draft to the RFC Editor, the
+       keywords will be used for the search engine. -->
+   <abstract>
+     <t>This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support encrypted requests/responses.</t>
+   </abstract>
+ </front>
+ <middle>
+   <section title="Introduction">
+     <t>There are three standardized forms for providing privacy to DNS including DNS over TLS, DNS over DTLS, and DNS over HTTPS (DoH). In order to use these encrypted forms of DNS securely, more information is needed by the client than the DNS Server list defined in Section 3 of <xref target="RFC3646"/>. This document defines three new DHCPv6 encapsulating options containing additional DHCPv6 options for clients to configure secure DNS in one of these forms. Each top level option specifies ONE server. Multiple servers are specified by including multiple top level options.</t>
+     <section title="Requirements Language">
+       <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC 2119</xref>.</t>
+     </section>
+   </section>
+   <section title="Applicability">
+     <t>It should be noted at the very beginning the problem that is being solved by these DHCPv6 options and the problems that are not being solved. It should be clear under what trust assumptions these options useful. Encrypting the DNS transport does not provide privacy of the requests/responses at the endpoints. If a local network operator provides DHCPv6 options to specify secure DNS transport of requests/responses, they are still capable of exploiting the information in the DNS messages. There should be no false sense of privacy derived from the presence of these options in a DHCP offer.</t>
+       <t>1. clients still can choose whether to use this info
+       2. operating systems may decide to whitelist (or blacklist) servers</t>
+   </section>
+   <section title="DHCPv6 Encapsulating Options">
+     <t>Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</t>
+     <t>The format for the DNS over TLS encapsulating option code is:</t>
+     <figure align="center" anchor="dns_tls_encap" title="DNS over TLS option">
+     <artwork align="center">
+     <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_DNS_TLS         |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     ]]>
+     </artwork>
+     </figure>
+     <t>
+       <list style="hanging" hangIndent="6">
+            <t hangText="option-code:">OPTION_DNS_TLS (TBD)</t>
+            <t hangText="option-len:">Length of the sum of the lengths of the encapsulated options.</t>
+       </list>
+     </t>
+     <t>
+       The format for the DNS over DTLS encapsulating option code is:
+     </t>
+     <figure align="center" anchor="dns_dtls_encap" title="DNS over DTLS option">
+     <artwork align="center">
+     <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_DNS_DTLS        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     ]]>
+     </artwork>
+     </figure>
+     <t>
+       <list style="hanging" hangIndent="6">
+         <t hangText="option-code:">OPTION_DNS_DTLS (TBD)</t>
+         <t hangText="option-len:">Length of the sum of the lengths of the encapsulated options.</t>
+       </list>
+     </t>
+     <t>
+       The format for the DNS over HTTPS encapsulating option code is:
+     </t>
+     <figure align="center" anchor="dns_https_encap" title="DNS over HTTPS option">
+     <artwork align="center">
+     <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |       OPTION_DNS_HTTPS        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     ]]>
+     </artwork>
+     </figure>
+     <t>
+       <list style="hanging" hangIndent="6">
+         <t hangText="option-code:">OPTION_DNS_HTTPS (TBD)</t>
+         <t hangText="option-len:">Length of the sum of the lengths of the encapsulated options.</t>
+       </list>
+     </t>
+   </section>
+   <section title="DHCPv6 DNS over TLS Encapsulated Options">
+     <t>There are four possible DHCPv6 encapsulated options contained in a top level OPTION_DNS_TLS option. Each sub-option MUST NOT appear more than once within a top level option.</t>
+     <section title="IPv6 Address Option" anchor="section_opt_ipv6">
+       <t>The first is an OPTION_IPV6 which is REQUIRED. This is a fixed length and contains the IPv6 address of the server.</t>
+       <figure align="center" anchor="option_ipv6_art" title="IPv6 option">
+       <artwork align="center">
+       <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           OPTION_IPV6         |       option-length (16)      |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    |                         IPv6 address                          |
+    |                                                               |
+    |                                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       ]]>
+       </artwork>
+       </figure>
+       <t>
+         <list style="hanging" hangIndent="6">
+           <t hangText="option-code:">OPTION_IPv6 (TBD)</t>
+           <t hangText="option-len:">16 bytes</t>
+         </list>
+       </t>
+     </section>
+     <section title="SNI Option" anchor="section_opt_sni">
+       <t>
+         The second is OPTION_SNI. This is a variable length string containing the Server Name Indication as defined in Section 3 of <xref target="RFC6066"/>. It is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <xref target="RFC1035"/>.
+       </t>
+       <figure align="center" anchor="option_sni_art" title="Server Name Indication option">
+       <artwork align="center">
+       <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           OPTION_SNI          |        option-length          |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                           server SNI                          .
+    .                        (variable length)                      .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       ]]>
+       </artwork>
+       </figure>
+       <t>
+         <list style="hanging" hangIndent="6">
+           <t hangText="option-code:">OPTION_SNI (TBD)</t>
+           <t hangText="option-len:">Length of the encoded string</t>
+         </list>
+       </t>
+     </section>
+     <section title="Port Option" anchor="section_opt_port">
+       <t>
+         The third option is OPTION_PORT. This is a fixed length option containing the port number of the listening server. It defaults to port 853 as defined in Section 3.1 of <xref target="RFC7858"/>. This DHCPv6 option is NOT REQUIRED and there is no need to specify it when the server is listening on port 853.
+       </t>
+       <figure align="center" anchor="option_port_art" title="Port option">
+       <artwork align="center">
+       <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          OPTION_PORT          |       option-length (2)       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           port number         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        ]]>
+       </artwork>
+       </figure>
+       <t>
+         <list style="hanging" hangIndent="6">
+           <t hangText="option-code:">OPTION_PORT (TBD)</t>
+           <t hangText="option-len:">2 bytes</t>
+         </list>
+       </t>
+     </section>
+     <section title="SPKI Pin Option" anchor="section_opt_spki">
+       <t>
+         The last option that can be included in the top level OPTION_DNS_TLS is OPTION_SPKI_PIN. This is a variable length string containing a base64 encoded Subject Public Key Info (SPKI) fingerprint as described in <xref target="RFC7469"/>. This option is NOT REQUIRED.
+       </t>
+       <figure align="center" anchor="option_spki_art" title="SPKI PIN option">
+       <artwork align="center">
+       <![CDATA[
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_SPKI_PIN        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                         server SPKI PIN                       .
+    .                        (variable length)                      .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        ]]>
+       </artwork>
+       </figure>
+       <t>
+         <list style="hanging" hangIndent="6">
+           <t hangText="option-code:">OPTION_SPKI_PIN (TBD)</t>
+           <t hangText="option-len:">Length of base 64 encoded string</t>
+         </list>
+       </t>
+     </section>
+   </section>
+   <section title="DHCPv6 DNS over DTLS Encapsulated Options">
+     <t>DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <xref target="section_opt_ipv6"/> is REQUIRED. OPTION_SNI defined in <xref target="section_opt_sni"/> is OPTIONAL. OPTION_PORT defined in <xref target="section_opt_port"/> is OPTIONAL. Finally, OPTION_SPKI_PIN defined in <xref target="section_opt_spki"/> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</t>
+   </section>
+   <section title="DHCPv6 DNS over HTTPS (DoH) Encapsulated Options">
+     <!--
+      DOH URI (Required for OPTION_DNS_DOH, not allowed for OPTION_DNS_{TLS,DTLS}):
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          OPTION_URI           |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                           server URI                          .
+    .                        (variable length)                      .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       -->
+   </section>
   </middle>
   <back>
     <references title="Normative References">
+      &RFC1035;
       &RFC2119;
+      &RFC6066;
+      &RFC7469;
+      &RFC7858;
     </references>
     <references title="Informative References">
-      &RFC7227;
+      &RFC3646;
     </references>
   </back>
 </rfc>
