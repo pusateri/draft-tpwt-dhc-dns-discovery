@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>DHCPv6 Option for encrypted DNS Discovery</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Requirements Language">
+<link href="#rfc.section.2" rel="Chapter" title="2 Applicability">
+<link href="#rfc.section.3" rel="Chapter" title="3 DHCPv6 Encapsulating Options">
+<link href="#rfc.section.4" rel="Chapter" title="4 DHCPv6 DNS over TLS Encapsulated Options">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 IPv6 Address Option">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 ADN Option">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Port Option">
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 SPKI Pin Option">
+<link href="#rfc.section.5" rel="Chapter" title="5 DHCPv6 DNS over DTLS Encapsulated Options">
+<link href="#rfc.section.6" rel="Chapter" title="6 DHCPv6 DNS over HTTPS (DoH) Encapsulated Options">
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 URI Option">
+<link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
+<link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
+<link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements">
+<link href="#rfc.references" rel="Chapter" title="10 References">
+<link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References">
+<link href="#rfc.appendix.A" rel="Chapter" title="A ISC DHCP Configuration Example">
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 ISC DHCP Server Configuration">
+<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 ISC DHCP Client Configuration">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.9.6 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Pusateri, T. and W. Toorop" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-tpwt-dhc-dns-discovery-00" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-02" />
+  <meta name="dct.abstract" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support encrypted requests/responses." />
+  <meta name="description" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support encrypted requests/responses." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">Internet Engineering Task Force</td>
+<td class="right">T. Pusateri</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">Unaffiliated</td>
+</tr>
+<tr>
+<td class="left">Intended status: Informational</td>
+<td class="right">W. Toorop</td>
+</tr>
+<tr>
+<td class="left">Expires: November 3, 2018</td>
+<td class="right">NLnet Labs</td>
+</tr>
+<tr>
+<td class="left"></td>
+<td class="right">May 2, 2018</td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">DHCPv6 Option for encrypted DNS Discovery<br />
+  <span class="filename">draft-tpwt-dhc-dns-discovery-00</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support encrypted requests/responses.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on November 3, 2018.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Requirements Language</a>
+</li>
+</ul><li>2.   <a href="#rfc.section.2">Applicability</a>
+</li>
+<li>3.   <a href="#rfc.section.3">DHCPv6 Encapsulating Options</a>
+</li>
+<li>4.   <a href="#rfc.section.4">DHCPv6 DNS over TLS Encapsulated Options</a>
+</li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">IPv6 Address Option</a>
+</li>
+<li>4.2.   <a href="#rfc.section.4.2">ADN Option</a>
+</li>
+<li>4.3.   <a href="#rfc.section.4.3">Port Option</a>
+</li>
+<li>4.4.   <a href="#rfc.section.4.4">SPKI Pin Option</a>
+</li>
+</ul><li>5.   <a href="#rfc.section.5">DHCPv6 DNS over DTLS Encapsulated Options</a>
+</li>
+<li>6.   <a href="#rfc.section.6">DHCPv6 DNS over HTTPS (DoH) Encapsulated Options</a>
+</li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">URI Option</a>
+</li>
+</ul><li>7.   <a href="#rfc.section.7">Security Considerations</a>
+</li>
+<li>8.   <a href="#rfc.section.8">IANA Considerations</a>
+</li>
+<li>9.   <a href="#rfc.section.9">Acknowledgements</a>
+</li>
+<li>10.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>10.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>10.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">ISC DHCP Configuration Example</a>
+</li>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">ISC DHCP Server Configuration</a>
+</li>
+<li>A.2.   <a href="#rfc.appendix.A.2">ISC DHCP Client Configuration</a>
+</li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> Introduction</h1>
+<p id="rfc.section.1.p.1">There are three standardized forms for providing privacy to DNS including DNS over TLS (as defined in <a href="#RFC7858" class="xref">[RFC7858]</a>), DNS over DTLS (as defined in <a href="#RFC8094" class="xref">[RFC8094]</a>), and DNS over HTTPS (DoH) as defined in <a href="#I-D.ietf-doh-dns-over-https" class="xref">[I-D.ietf-doh-dns-over-https]</a>. In order to use these encrypted forms of DNS securely, more information is needed by the client than the DNS Server list defined in Section 3 of <a href="#RFC3646" class="xref">[RFC3646]</a>. This document defines three new DHCPv6 encapsulating options containing additional DHCPv6 options for clients to configure secure DNS in one of these forms. Each top level option specifies ONE server. Multiple servers are specified by including multiple instances of the same top level option with different encapsulated options.</p>
+<h1 id="rfc.section.1.1">
+<a href="#rfc.section.1.1">1.1.</a> Requirements Language</h1>
+<p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> Applicability</h1>
+<p id="rfc.section.2.p.1">It should be noted at the very beginning the problem that is being solved by these DHCPv6 options and the problems that are not being solved. It should be clear under what trust assumptions these options useful. Encrypting the DNS transport does not provide privacy of the requests/responses at the endpoints. If a local network operator provides DHCPv6 options to specify secure DNS transport of requests/responses, they are still capable of exploiting the information in the DNS messages. There should be no false sense of privacy derived from the presence of these options in a DHCP offer.</p>
+<p id="rfc.section.2.p.2">1. clients still can choose whether to use this info 2. operating systems may decide to whitelist (or blacklist) servers</p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> DHCPv6 Encapsulating Options</h1>
+<p id="rfc.section.3.p.1">Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation.  This is permitted by Section 22 of <a href="#RFC3315" class="xref">[RFC3315]</a>. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</p>
+<p id="rfc.section.3.p.2">The format for the <a href="#RFC7858" class="xref">DNS over TLS</a> encapsulating option code is:</p>
+<div id="rfc.figure.1"></div>
+<div id="dns_tls_encap"></div>
+<pre>
+     
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_DNS_TLS         |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     
+     </pre>
+<p class="figure">Figure 1: DNS over TLS option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_DNS_TLS (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of the sum of the lengths of the encapsulated options.</dd>
+</dl>
+
+<p> </p>
+<p id="rfc.section.3.p.4">The format for the <a href="#RFC8094" class="xref">DNS over DTLS</a> encapsulating option code is: </p>
+<div id="rfc.figure.2"></div>
+<div id="dns_dtls_encap"></div>
+<pre>
+     
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_DNS_DTLS        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     
+     </pre>
+<p class="figure">Figure 2: DNS over DTLS option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_DNS_DTLS (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of the sum of the lengths of the encapsulated options.</dd>
+</dl>
+
+<p> </p>
+<p id="rfc.section.3.p.6">The format for the <a href="#I-D.ietf-doh-dns-over-https" class="xref">DNS over HTTPS</a> encapsulating option code is: </p>
+<div id="rfc.figure.3"></div>
+<div id="dns_https_encap"></div>
+<pre>
+     
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |       OPTION_DNS_HTTPS        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    .            encapsulated-options (variable length)             .
+    .                                                               .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     
+     </pre>
+<p class="figure">Figure 3: DNS over HTTPS option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_DNS_HTTPS (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of the sum of the lengths of the encapsulated options.</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> DHCPv6 DNS over TLS Encapsulated Options</h1>
+<p id="rfc.section.4.p.1">There are four possible DHCPv6 encapsulated options contained in a top level OPTION_DNS_TLS option. Each sub-option MUST NOT appear more than once within a top level option.</p>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#section_opt_ipv6" id="section_opt_ipv6">IPv6 Address Option</a>
+</h1>
+<p id="rfc.section.4.1.p.1">The first is an OPTION_IPV6 which is REQUIRED. This is a fixed length and contains the IPv6 address of the server.</p>
+<div id="rfc.figure.4"></div>
+<div id="option_ipv6_art"></div>
+<pre>
+       
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           OPTION_IPV6         |       option-length (16)      |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                                                               |
+    |                         IPv6 address                          |
+    |                                                               |
+    |                                                               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       
+       </pre>
+<p class="figure">Figure 4: IPv6 option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_IPv6 (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">16 bytes</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#section_opt_adn" id="section_opt_adn">ADN Option</a>
+</h1>
+<p id="rfc.section.4.2.p.1">The second is OPTION_ADN. This is a variable length string containing the Authentication Domain Name as specified in <a href="#RFC8310" class="xref">[RFC8310]</a>. This name MUST be verified in accordance with <a href="#RFC6125" class="xref">[RFC6125]</a> or subsequent updates to this document. If the client supports the TLS Server Name Indication (SNI) extension as defined in Section 3 of <a href="#RFC6066" class="xref">[RFC6066]</a>, the ADN SHOULD be used in this extension. It is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <a href="#RFC1035" class="xref">[RFC1035]</a>.  </p>
+<div id="rfc.figure.5"></div>
+<div id="option_adn_art"></div>
+<pre>
+       
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           OPTION_ADN          |        option-length          |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                           server ADN                          .
+    .                        (variable length)                      .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       
+       </pre>
+<p class="figure">Figure 5: Server Name Indication option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_ADN (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of the encoded string</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#section_opt_port" id="section_opt_port">Port Option</a>
+</h1>
+<p id="rfc.section.4.3.p.1">The third option is OPTION_PORT. This is a fixed length option containing the port number of the listening server. It defaults to port 853 as defined in Section 3.1 of <a href="#RFC7858" class="xref">[RFC7858]</a>. This DHCPv6 option is OPTIONAL and there is no need to specify it when the server is listening on port 853.  </p>
+<div id="rfc.figure.6"></div>
+<div id="option_port_art"></div>
+<pre>
+       
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          OPTION_PORT          |       option-length (2)       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |           port number         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        
+       </pre>
+<p class="figure">Figure 6: Port option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_PORT (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">2 bytes</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.4.4">
+<a href="#rfc.section.4.4">4.4.</a> <a href="#section_opt_spki" id="section_opt_spki">SPKI Pin Option</a>
+</h1>
+<p id="rfc.section.4.4.p.1">The last option that can be included in the top level OPTION_DNS_TLS is OPTION_SPKI_PIN. This is a variable length string containing a base64 encoded Subject Public Key Info (SPKI) fingerprint as described in <a href="#RFC7469" class="xref">[RFC7469]</a>. OPTION_SPKI_PIN is OPTIONAL.  </p>
+<div id="rfc.figure.7"></div>
+<div id="option_spki_art"></div>
+<pre>
+       
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |        OPTION_SPKI_PIN        |         option-length         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    .                         server SPKI PIN                       .
+    .                        (variable length)                      .
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        
+       </pre>
+<p class="figure">Figure 7: SPKI PIN option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_SPKI_PIN (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of base 64 encoded string</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> DHCPv6 DNS over DTLS Encapsulated Options</h1>
+<p id="rfc.section.5.p.1">DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <a href="#section_opt_ipv6" class="xref">Section 4.1</a> is REQUIRED. OPTION_ADN defined in <a href="#section_opt_adn" class="xref">Section 4.2</a> is OPTIONAL. OPTION_PORT defined in <a href="#section_opt_port" class="xref">Section 4.3</a> is OPTIONAL. Finally, OPTION_SPKI_PIN defined in <a href="#section_opt_spki" class="xref">Section 4.4</a> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> DHCPv6 DNS over HTTPS (DoH) Encapsulated Options</h1>
+<p id="rfc.section.6.p.1">The DNS over HTTPS top level OPTION_DNS_HTTPS encapsulation REQUIRES OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in <a href="#section_opt_spki" class="xref">Section 4.4</a>.</p>
+<h1 id="rfc.section.6.1">
+<a href="#rfc.section.6.1">6.1.</a> <a href="#section_opt_uri" id="section_opt_uri">URI Option</a>
+</h1>
+<p id="rfc.section.6.1.p.1">OPTION_URI includes a server URI string that provides the necessary components to connect to a DNS over HTTPS server as defined in <a href="#I-D.ietf-doh-dns-over-https" class="xref">[I-D.ietf-doh-dns-over-https]</a>. Note that the DNS over HTTPS specification requires a server to respond to both GET and POST methods. The  URI MUST NOT include the query component beginning with a "?" and including the "dns" variable that is used in a GET method request. It is up to the client to decide whether to issue a GET or POST method in the HTTP request. Therefore, the client is responsible for appending the "?" and "dns" variable along with its base64 encoded value to the URI for GET method HTTP requests.</p>
+<div id="rfc.figure.8"></div>
+<div id="option_uri_art"></div>
+<pre>
+       
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  |          OPTION_URI           |         option-length         |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  .                           server URI                          .
+  .                        (variable length)                      .
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        
+       </pre>
+<p class="figure">Figure 8: URI option</p>
+<p></p>
+
+<dl>
+<dt>option-code:</dt>
+<dd style="margin-left: 6">OPTION_URI (TBD)</dd>
+<dt>option-len:</dt>
+<dd style="margin-left: 6">Length of server URI string</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> Security Considerations</h1>
+<p id="rfc.section.7.p.1">TBD</p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> IANA Considerations</h1>
+<p id="rfc.section.8.p.1">This document identifies several new DHCPv6 Option Codes that require an assigned number.</p>
+<div id="rfc.table.1"></div>
+<div id="iana_table"></div>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="left">Name</th>
+<th class="center">Option Code</th>
+<th class="left">Definition</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="left">OPTION_DNS_TLS</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#dns_tls_encap" class="xref">Figure 1</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_DNS_DTLS</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#dns_dtls_encap" class="xref">Figure 2</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_DNS_HTTPS</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#dns_https_encap" class="xref">Figure 3</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_IPV6</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#section_opt_ipv6" class="xref">Section 4.1</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_ADN</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#section_opt_adn" class="xref">Section 4.2</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_PORT</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#section_opt_port" class="xref">Section 4.3</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_SPKI_PIN</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#section_opt_spki" class="xref">Section 4.4</a></td>
+</tr>
+<tr>
+<td class="left">OPTION_URI</td>
+<td class="center">TBD</td>
+<td class="left"><a href="#section_opt_uri" class="xref">Section 6.1</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="rfc.section.9">
+<a href="#rfc.section.9">9.</a> Acknowledgements</h1>
+<p id="rfc.section.9.p.1">This document was motivated in part by Section 7.3.1 of <a href="#RFC8310" class="xref">[RFC8310]</a>. Thanks to the authors Sara Dickinson, Daniel Kahn Gillmor, and Tirumaleswar Reddy for documenting the issue. Thanks also to Ted Lemon for  appropriate warnings about this work.</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">10.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">10.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-doh-dns-over-https">[I-D.ietf-doh-dns-over-https]</b></td>
+<td class="top">
+<a>Hoffman, P.</a> and <a>P. McManus</a>, "<a href="https://tools.ietf.org/html/draft-ietf-doh-dns-over-https-07">DNS Queries over HTTPS</a>", Internet-Draft draft-ietf-doh-dns-over-https-07, April 2018.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC1035">[RFC1035]</b></td>
+<td class="top">
+<a>Mockapetris, P.</a>, "<a href="https://tools.ietf.org/html/rfc1035">Domain names - implementation and specification</a>", STD 13, RFC 1035, DOI 10.17487/RFC1035, November 1987.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC3315">[RFC3315]</b></td>
+<td class="top">
+<a>Droms, R.</a>, <a>Bound, J.</a>, <a>Volz, B.</a>, <a>Lemon, T.</a>, <a>Perkins, C.</a> and <a>M. Carney</a>, "<a href="https://tools.ietf.org/html/rfc3315">Dynamic Host Configuration Protocol for IPv6 (DHCPv6)</a>", RFC 3315, DOI 10.17487/RFC3315, July 2003.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6066">[RFC6066]</b></td>
+<td class="top">
+<a>Eastlake 3rd, D.</a>, "<a href="https://tools.ietf.org/html/rfc6066">Transport Layer Security (TLS) Extensions: Extension Definitions</a>", RFC 6066, DOI 10.17487/RFC6066, January 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6125">[RFC6125]</b></td>
+<td class="top">
+<a>Saint-Andre, P.</a> and <a>J. Hodges</a>, "<a href="https://tools.ietf.org/html/rfc6125">Representation and Verification of Domain-Based Application Service Identity within Internet Public Key Infrastructure Using X.509 (PKIX) Certificates in the Context of Transport Layer Security (TLS)</a>", RFC 6125, DOI 10.17487/RFC6125, March 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7469">[RFC7469]</b></td>
+<td class="top">
+<a>Evans, C.</a>, <a>Palmer, C.</a> and <a>R. Sleevi</a>, "<a href="https://tools.ietf.org/html/rfc7469">Public Key Pinning Extension for HTTP</a>", RFC 7469, DOI 10.17487/RFC7469, April 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7858">[RFC7858]</b></td>
+<td class="top">
+<a>Hu, Z.</a>, <a>Zhu, L.</a>, <a>Heidemann, J.</a>, <a>Mankin, A.</a>, <a>Wessels, D.</a> and <a>P. Hoffman</a>, "<a href="https://tools.ietf.org/html/rfc7858">Specification for DNS over Transport Layer Security (TLS)</a>", RFC 7858, DOI 10.17487/RFC7858, May 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8094">[RFC8094]</b></td>
+<td class="top">
+<a>Reddy, T.</a>, <a>Wing, D.</a> and <a>P. Patil</a>, "<a href="https://tools.ietf.org/html/rfc8094">DNS over Datagram Transport Layer Security (DTLS)</a>", RFC 8094, DOI 10.17487/RFC8094, February 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8310">[RFC8310]</b></td>
+<td class="top">
+<a>Dickinson, S.</a>, <a>Gillmor, D.</a> and <a>T. Reddy</a>, "<a href="https://tools.ietf.org/html/rfc8310">Usage Profiles for DNS over TLS and DNS over DTLS</a>", RFC 8310, DOI 10.17487/RFC8310, March 2018.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">10.2.</a> Informative References</h1>
+<table><tbody><tr>
+<td class="reference"><b id="RFC3646">[RFC3646]</b></td>
+<td class="top">
+<a>Droms, R.</a>, "<a href="https://tools.ietf.org/html/rfc3646">DNS Configuration options for Dynamic Host Configuration Protocol for IPv6 (DHCPv6)</a>", RFC 3646, DOI 10.17487/RFC3646, December 2003.</td>
+</tr></tbody></table>
+<h1 id="rfc.appendix.A">
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#appendix_isc" id="appendix_isc">ISC DHCP Configuration Example</a>
+</h1>
+<p id="rfc.section.A.p.1">The DHCPv6 options defined in this specification were tested with the ISC DHCP server <em>dhcpd</em> and client <em>dhclient</em> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, port number, and SPKI pin. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</p>
+<h1 id="rfc.appendix.A.1">
+<a href="#rfc.appendix.A.1">A.1.</a> ISC DHCP Server Configuration</h1>
+<pre>
+            
+  option space tls;
+  option tls.ipv6 code 226 = array of ip6-address;
+  option tls.port code 227 = unsigned integer 16;
+  option tls.adn code 228 = domain-list;
+  option tls.pin code 229 = text;
+  option dhcp6.tls-encapsulation code 225 = encapsulate tls;
+
+  subnet6 xxxx:xxxx:xxxx:xxxx::/64 {
+      option tls.ipv6 2a04:b900:0:100::37;
+      option tls.port 853;
+      option tls.adn "getdnsapi.net";
+      option tls.pin "foxZRnIh9gZpWnl+zEiKa0EJ2rdCGroMWm02gaxSc9S=";
+
+      option tls.ipv6 2620:fe::fe;
+      option tls.port 853;
+      option tls.sni "dns.quad9.net";
+  }
+            
+          </pre>
+<h1 id="rfc.appendix.A.2">
+<a href="#rfc.appendix.A.2">A.2.</a> ISC DHCP Client Configuration</h1>
+<pre>
+            
+  option space tls;
+  option tls.ipv6 code 226 = array of ip6-address;
+  option tls.port code 227 = unsigned integer 16;
+  option tls.adn code 228 = domain-list;
+  option tls.pin code 229 = text;
+  option dhcp6.tls-encapsulation code 225 = encapsulate tls;
+
+  request dhcp6.tls-encapsulation;
+            
+          </pre>
+<h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Tom Pusateri</span> 
+	  <span class="n hidden">
+		<span class="family-name">Pusateri</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Unaffiliated</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality">Raleigh</span>,  
+		<span class="region">NC</span> 
+		<span class="code">27608</span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">Phone: +1 919 867 1330</span>
+
+<span class="vcardline">EMail: <a href="mailto:pusateri@bangj.com">pusateri@bangj.com</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Willem Toorop</span> 
+	  <span class="n hidden">
+		<span class="family-name">Toorop</span>
+	  </span>
+	</span>
+	<span class="org vcardline">NLnet Labs</span>
+	<span class="adr">
+	  <span class="vcardline">Science Park 400</span>
+
+	  <span class="vcardline">
+		<span class="locality">Amsterdam</span>,  
+		<span class="region"></span>
+		<span class="code">1098 XH</span>
+	  </span>
+	  <span class="country-name vcardline">Netherlands</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:willem@nlnetlabs.nl">willem@nlnetlabs.nl</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
