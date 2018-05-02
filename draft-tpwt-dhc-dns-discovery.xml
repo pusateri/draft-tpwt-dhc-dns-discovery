@@ -4,11 +4,16 @@
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3315 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3315.xml">
 <!ENTITY RFC3646 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3646.xml">
 <!ENTITY RFC6066 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6066.xml">
+<!ENTITY RFC6125 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6125.xml">
 <!ENTITY RFC7227 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7227.xml">
 <!ENTITY RFC7469 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7469.xml">
 <!ENTITY RFC7858 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7858.xml">
+<!ENTITY RFC8094 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8094.xml">
+<!ENTITY RFC8310 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8310.xml">
+<!ENTITY I-D.ietf-doh-dns-over-https SYSTEM  "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-doh-dns-over-https.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -83,7 +88,7 @@
    <!-- Meta-data Declarations -->
    <area>DHC</area>
    <workgroup>Internet Engineering Task Force</workgroup>
-   <!-- WG name at the upperleft corner of the doc,
+   <!-- WG name at the upper left corner of the doc,
        IETF is fine for individual submissions.  
  If this element is not present, the default is "Network Working Group",
        which is used by the RFC Editor as a nod to the history of the IETF. -->
@@ -98,7 +103,7 @@
  </front>
  <middle>
    <section title="Introduction">
-     <t>There are three standardized forms for providing privacy to DNS including DNS over TLS, DNS over DTLS, and DNS over HTTPS (DoH). In order to use these encrypted forms of DNS securely, more information is needed by the client than the DNS Server list defined in Section 3 of <xref target="RFC3646"/>. This document defines three new DHCPv6 encapsulating options containing additional DHCPv6 options for clients to configure secure DNS in one of these forms. Each top level option specifies ONE server. Multiple servers are specified by including multiple top level options.</t>
+     <t>There are three standardized forms for providing privacy to DNS including DNS over TLS (as defined in <xref target="RFC7858"/>), DNS over DTLS (as defined in <xref target="RFC8094"/>), and DNS over HTTPS (DoH) as defined in <xref target="I-D.ietf-doh-dns-over-https"/>. In order to use these encrypted forms of DNS securely, more information is needed by the client than the DNS Server list defined in Section 3 of <xref target="RFC3646"/>. This document defines three new DHCPv6 encapsulating options containing additional DHCPv6 options for clients to configure secure DNS in one of these forms. Each top level option specifies ONE server. Multiple servers are specified by including multiple instances of the same top level option with different encapsulated options.</t>
      <section title="Requirements Language">
        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC 2119</xref>.</t>
      </section>
@@ -109,8 +114,8 @@
        2. operating systems may decide to whitelist (or blacklist) servers</t>
    </section>
    <section title="DHCPv6 Encapsulating Options">
-     <t>Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</t>
-     <t>The format for the DNS over TLS encapsulating option code is:</t>
+     <t>Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation.  This is permitted by Section 22 of <xref target="RFC3315"/>. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</t>
+     <t>The format for the <xref target="RFC7858">DNS over TLS</xref> encapsulating option code is:</t>
      <figure align="center" anchor="dns_tls_encap" title="DNS over TLS option">
      <artwork align="center">
      <![CDATA[
@@ -133,7 +138,7 @@
        </list>
      </t>
      <t>
-       The format for the DNS over DTLS encapsulating option code is:
+       The format for the <xref target="RFC8094">DNS over DTLS</xref> encapsulating option code is:
      </t>
      <figure align="center" anchor="dns_dtls_encap" title="DNS over DTLS option">
      <artwork align="center">
@@ -157,7 +162,7 @@
        </list>
      </t>
      <t>
-       The format for the DNS over HTTPS encapsulating option code is:
+       The format for the <xref target="I-D.ietf-doh-dns-over-https">DNS over HTTPS</xref> encapsulating option code is:
      </t>
      <figure align="center" anchor="dns_https_encap" title="DNS over HTTPS option">
      <artwork align="center">
@@ -208,19 +213,19 @@
          </list>
        </t>
      </section>
-     <section title="SNI Option" anchor="section_opt_sni">
+     <section title="ADN Option" anchor="section_opt_adn">
        <t>
-         The second is OPTION_SNI. This is a variable length string containing the Server Name Indication as defined in Section 3 of <xref target="RFC6066"/>. It is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <xref target="RFC1035"/>.
+         The second is OPTION_ADN. This is a variable length string containing the Authentication Domain Name as specified in <xref target="RFC8310"/>. This name MUST be verified in accordance with <xref target="RFC6125"/> or subsequent updates to this document. If the client supports the TLS Server Name Indication (SNI) extension as defined in Section 3 of <xref target="RFC6066"/>, the ADN SHOULD be used in this extension. It is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <xref target="RFC1035"/>.
        </t>
-       <figure align="center" anchor="option_sni_art" title="Server Name Indication option">
+       <figure align="center" anchor="option_adn_art" title="Server Name Indication option">
        <artwork align="center">
        <![CDATA[
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |           OPTION_SNI          |        option-length          |
+    |           OPTION_ADN          |        option-length          |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    .                           server SNI                          .
+    .                           server ADN                          .
     .                        (variable length)                      .
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        ]]>
@@ -228,7 +233,7 @@
        </figure>
        <t>
          <list style="hanging" hangIndent="6">
-           <t hangText="option-code:">OPTION_SNI (TBD)</t>
+           <t hangText="option-code:">OPTION_ADN (TBD)</t>
            <t hangText="option-len:">Length of the encoded string</t>
          </list>
        </t>
@@ -284,7 +289,7 @@
      </section>
    </section>
    <section title="DHCPv6 DNS over DTLS Encapsulated Options">
-     <t>DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <xref target="section_opt_ipv6"/> is REQUIRED. OPTION_SNI defined in <xref target="section_opt_sni"/> is OPTIONAL. OPTION_PORT defined in <xref target="section_opt_port"/> is OPTIONAL. Finally, OPTION_SPKI_PIN defined in <xref target="section_opt_spki"/> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</t>
+     <t>DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <xref target="section_opt_ipv6"/> is REQUIRED. OPTION_ADN defined in <xref target="section_opt_adn"/> is OPTIONAL. OPTION_PORT defined in <xref target="section_opt_port"/> is OPTIONAL. Finally, OPTION_SPKI_PIN defined in <xref target="section_opt_spki"/> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</t>
    </section>
    <section title="DHCPv6 DNS over HTTPS (DoH) Encapsulated Options">
      <!--
@@ -305,12 +310,20 @@
     <references title="Normative References">
       &RFC1035;
       &RFC2119;
+      &RFC3315;
       &RFC6066;
+      &RFC6125;
       &RFC7469;
       &RFC7858;
+      &RFC8094;
+      &RFC8310;
+      &I-D.ietf-doh-dns-over-https;
     </references>
     <references title="Informative References">
       &RFC3646;
     </references>
+    <section title="ISC DHCP Configuration Example" anchor="appendix_isc">
+      <t>The DHCPv6 options defined in this specification were tested with the ISC DHCP server <spanx style="emph">dhcpd</spanx> and client <spanx style="emph">dhclient</spanx> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, port number, and SPKI pin. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</t>
+    </section>
   </back>
 </rfc>
