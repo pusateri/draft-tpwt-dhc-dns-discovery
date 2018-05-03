@@ -376,7 +376,7 @@
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.1.1" rel="Chapter" title="1.1 Requirements Language">
-<link href="#rfc.section.2" rel="Chapter" title="2 Applicability">
+<link href="#rfc.section.2" rel="Chapter" title="2 Trust">
 <link href="#rfc.section.3" rel="Chapter" title="3 DHCPv6 Encapsulating Options">
 <link href="#rfc.section.4" rel="Chapter" title="4 DHCPv6 DNS over TLS Encapsulated Options">
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 IPv6 Address Option">
@@ -462,7 +462,7 @@
 </li>
 <ul><li>1.1.   <a href="#rfc.section.1.1">Requirements Language</a>
 </li>
-</ul><li>2.   <a href="#rfc.section.2">Applicability</a>
+</ul><li>2.   <a href="#rfc.section.2">Trust</a>
 </li>
 <li>3.   <a href="#rfc.section.3">DHCPv6 Encapsulating Options</a>
 </li>
@@ -513,9 +513,18 @@
 <a href="#rfc.section.1.1">1.1.</a> Requirements Language</h1>
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
 <h1 id="rfc.section.2">
-<a href="#rfc.section.2">2.</a> Applicability</h1>
-<p id="rfc.section.2.p.1">It should be noted at the very beginning the problem that is being solved by these DHCPv6 options and the problems that are not being solved. It should be clear under what trust assumptions these options useful. Encrypting the DNS transport does not provide privacy of the requests/responses at the endpoints. If a local network operator provides DHCPv6 options to specify secure DNS transport of requests/responses, they are still capable of exploiting the information in the DNS messages. There should be no false sense of privacy derived from the presence of these options in a DHCP offer.</p>
-<p id="rfc.section.2.p.2">1. clients still can choose whether to use this info 2. operating systems may decide to whitelist (or blacklist) servers</p>
+<a href="#rfc.section.2">2.</a> Trust</h1>
+<p id="rfc.section.2.p.1">Encrypting the DNS transport provides privacy of the information contained in the DNS requests/responses across the connection. It does not provide privacy at the endpoints of the connection. The private DNS configuration parameters obtained by a client via DHCPv6 are not automatically trusted. Trust is established in many ways or not at all. The environment a client finds itself in will determine how trustworthy the DHCP reply may or may not be. There should be no false sense of privacy derived from the presence of these options in a DHCP reply.</p>
+<p id="rfc.section.2.p.2">The following points may assist the DHCPv6 client: </p>
+
+<ol>
+<li>clients can choose whether or not to use the DNS server configuration parameters they receive via DHCPv6 and may simply override these parameters with their own configuration.</li>
+<li>DHCPv6 servers already provide unencrypted DNS server parameters to clients that are regularly used because the client has decided to trust the server reply in that environment.</li>
+<li>client implementations (or operating system vendors) could establish whitelists (or blacklists) of known good (bad) servers.</li>
+<li>the community could establish a registry of trusted DNS privacy servers.</li>
+</ol>
+
+<p> </p>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#encap_options" id="encap_options">DHCPv6 Encapsulating Options</a>
 </h1>
@@ -759,7 +768,9 @@
 <p> </p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> Security Considerations</h1>
-<p id="rfc.section.7.p.1">TBD</p>
+<p id="rfc.section.7.p.1">Compromising domain name resolution may provide a way to unknowingly direct client network traffic to non-authentic service providers. Before this specification existed, DHCPv6 domain name servers could have directed DHCPv6 clients to compromised DNS servers. Adding encrypted DNS configuration parameters does not change this fact.</p>
+<p id="rfc.section.7.p.2">There are ways to verify the integrity of the DNS responses for messages received unencrypted. The integrity of the responses must still be questioned when the responses are received over an encrypted DNS connection.</p>
+<p id="rfc.section.7.p.3">New, less obvious ways to mislead a client are possible with these new options to pretend a client is talking to an authenticated DNS server when, in fact, the client has been misled or mis-directed. These new threats are the focus of this section.</p>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> IANA Considerations</h1>
 <p id="rfc.section.8.p.1">This document identifies several new DHCPv6 Option Codes that require an assigned number.</p>
