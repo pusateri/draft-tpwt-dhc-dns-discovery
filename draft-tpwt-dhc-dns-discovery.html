@@ -5,7 +5,7 @@
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
-  <title>DHCPv6 Option for private DNS Discovery</title>
+  <title>DHCPv6 Options for private DNS Discovery</title>
 
   <style type="text/css" title="Xml2Rfc (sans serif)">
   /*<![CDATA[*/
@@ -403,7 +403,7 @@
 
   <meta name="dct.creator" content="Pusateri, T. and W. Toorop" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-tpwt-dhc-dns-discovery-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-02" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-03" />
   <meta name="dct.abstract" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
   <meta name="description" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
 
@@ -427,19 +427,19 @@
 <td class="right">W. Toorop</td>
 </tr>
 <tr>
-<td class="left">Expires: November 3, 2018</td>
+<td class="left">Expires: November 4, 2018</td>
 <td class="right">NLnet Labs</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 2, 2018</td>
+<td class="right">May 3, 2018</td>
 </tr>
 
     	
     </tbody>
   </table>
 
-  <p class="title">DHCPv6 Option for private DNS Discovery<br />
+  <p class="title">DHCPv6 Options for private DNS Discovery<br />
   <span class="filename">draft-tpwt-dhc-dns-discovery-00</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
@@ -448,7 +448,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 3, 2018.</p>
+<p>This Internet-Draft will expire on November 4, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -517,7 +517,8 @@
 <p id="rfc.section.2.p.1">It should be noted at the very beginning the problem that is being solved by these DHCPv6 options and the problems that are not being solved. It should be clear under what trust assumptions these options useful. Encrypting the DNS transport does not provide privacy of the requests/responses at the endpoints. If a local network operator provides DHCPv6 options to specify secure DNS transport of requests/responses, they are still capable of exploiting the information in the DNS messages. There should be no false sense of privacy derived from the presence of these options in a DHCP offer.</p>
 <p id="rfc.section.2.p.2">1. clients still can choose whether to use this info 2. operating systems may decide to whitelist (or blacklist) servers</p>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> DHCPv6 Encapsulating Options</h1>
+<a href="#rfc.section.3">3.</a> <a href="#encap_options" id="encap_options">DHCPv6 Encapsulating Options</a>
+</h1>
 <p id="rfc.section.3.p.1">Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation.  This is permitted by Section 22 of <a href="#RFC3315" class="xref">[RFC3315]</a>. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</p>
 <p id="rfc.section.3.p.2">The format for the <a href="#RFC7858" class="xref">DNS over TLS</a> encapsulating option code is:</p>
 <div id="rfc.figure.1"></div>
@@ -726,6 +727,7 @@
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> DHCPv6 DNS over HTTPS (DoH) Encapsulated Options</h1>
 <p id="rfc.section.6.p.1">The DNS over HTTPS top level OPTION_DNS_HTTPS encapsulation REQUIRES OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in <a href="#section_opt_spki" class="xref">Section 4.4</a>.</p>
+<p><a id="Q1" class="info">[Q1]<span class="info">TJP: Should we allow OPTION_IPv6?</span></a></p>
 <h1 id="rfc.section.6.1">
 <a href="#rfc.section.6.1">6.1.</a> <a href="#section_opt_uri" id="section_opt_uri">URI Option</a>
 </h1>
@@ -773,17 +775,17 @@
 <tr>
 <td class="left">OPTION_DNS_TLS</td>
 <td class="center">TBD</td>
-<td class="left"><a href="#dns_tls_encap" class="xref">Figure 1</a></td>
+<td class="left"><a href="#encap_options" class="xref">Section 3</a></td>
 </tr>
 <tr>
 <td class="left">OPTION_DNS_DTLS</td>
 <td class="center">TBD</td>
-<td class="left"><a href="#dns_dtls_encap" class="xref">Figure 2</a></td>
+<td class="left"><a href="#encap_options" class="xref">Section 3</a></td>
 </tr>
 <tr>
 <td class="left">OPTION_DNS_HTTPS</td>
 <td class="center">TBD</td>
-<td class="left"><a href="#dns_https_encap" class="xref">Figure 3</a></td>
+<td class="left"><a href="#encap_options" class="xref">Section 3</a></td>
 </tr>
 <tr>
 <td class="left">OPTION_IPV6</td>
@@ -887,13 +889,13 @@
 <pre>
             
   option space tls;
-  option tls.ipv6 code 226 = array of ip6-address;
+  option tls.ipv6 code 226 = ip6-address;
   option tls.port code 227 = unsigned integer 16;
   option tls.adn code 228 = domain-list;
   option tls.pin code 229 = text;
   option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
-  subnet6 xxxx:xxxx:xxxx:xxxx::/64 {
+  subnet6 2001:DB8:01::/64 {
       option tls.ipv6 2a04:b900:0:100::37;
       option tls.port 853;
       option tls.adn "getdnsapi.net";
@@ -903,21 +905,21 @@
       option tls.port 853;
       option tls.sni "dns.quad9.net";
   }
-            
+
           </pre>
 <h1 id="rfc.appendix.A.2">
 <a href="#rfc.appendix.A.2">A.2.</a> ISC DHCP Client Configuration</h1>
 <pre>
             
   option space tls;
-  option tls.ipv6 code 226 = array of ip6-address;
+  option tls.ipv6 code 226 = ip6-address;
   option tls.port code 227 = unsigned integer 16;
   option tls.adn code 228 = domain-list;
   option tls.pin code 229 = text;
   option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
   request dhcp6.tls-encapsulation;
-            
+
           </pre>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">

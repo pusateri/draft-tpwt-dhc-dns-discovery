@@ -5,11 +5,11 @@
 Internet Engineering Task Force                              T. Pusateri
 Internet-Draft                                              Unaffiliated
 Intended status: Informational                                 W. Toorop
-Expires: November 3, 2018                                     NLnet Labs
-                                                             May 2, 2018
+Expires: November 4, 2018                                     NLnet Labs
+                                                             May 3, 2018
 
 
-                DHCPv6 Option for private DNS Discovery
+                DHCPv6 Options for private DNS Discovery
                     draft-tpwt-dhc-dns-discovery-00
 
 Abstract
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 3, 2018.
+   This Internet-Draft will expire on November 4, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 1]
+Pusateri & Toorop       Expires November 4, 2018                [Page 1]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 Table of Contents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 2]
+Pusateri & Toorop       Expires November 4, 2018                [Page 2]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 2.  Applicability
@@ -165,9 +165,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 3]
+Pusateri & Toorop       Expires November 4, 2018                [Page 3]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
    The format for the DNS over DTLS [RFC8094] encapsulating option code
@@ -221,9 +221,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 4]
+Pusateri & Toorop       Expires November 4, 2018                [Page 4]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 4.  DHCPv6 DNS over TLS Encapsulated Options
@@ -277,9 +277,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 5]
+Pusateri & Toorop       Expires November 4, 2018                [Page 5]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
         0                   1                   2                   3
@@ -333,9 +333,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 6]
+Pusateri & Toorop       Expires November 4, 2018                [Page 6]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
         0                   1                   2                   3
@@ -369,6 +369,8 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
    OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in
    Section 4.4.
 
+   [[Q1: Should we allow OPTION_IPv6? --TJP]]
+
 6.1.  URI Option
 
    OPTION_URI includes a server URI string that provides the necessary
@@ -387,11 +389,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-
-
-Pusateri & Toorop       Expires November 3, 2018                [Page 7]
+Pusateri & Toorop       Expires November 4, 2018                [Page 7]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
        0                   1                   2                   3
@@ -422,9 +422,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
              +------------------+-------------+-------------+
              | Name             | Option Code | Definition  |
              +------------------+-------------+-------------+
-             | OPTION_DNS_TLS   |     TBD     | Figure 1    |
-             | OPTION_DNS_DTLS  |     TBD     | Figure 2    |
-             | OPTION_DNS_HTTPS |     TBD     | Figure 3    |
+             | OPTION_DNS_TLS   |     TBD     | Section 3   |
+             | OPTION_DNS_DTLS  |     TBD     | Section 3   |
+             | OPTION_DNS_HTTPS |     TBD     | Section 3   |
              | OPTION_IPV6      |     TBD     | Section 4.1 |
              | OPTION_ADN       |     TBD     | Section 4.2 |
              | OPTION_PORT      |     TBD     | Section 4.3 |
@@ -445,9 +445,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 8]
+Pusateri & Toorop       Expires November 4, 2018                [Page 8]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 10.  References
@@ -501,9 +501,9 @@ Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 3, 2018                [Page 9]
+Pusateri & Toorop       Expires November 4, 2018                [Page 9]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
    [RFC8310]  Dickinson, S., Gillmor, D., and T. Reddy, "Usage Profiles
@@ -532,13 +532,13 @@ A.1.  ISC DHCP Server Configuration
 
 
      option space tls;
-     option tls.ipv6 code 226 = array of ip6-address;
+     option tls.ipv6 code 226 = ip6-address;
      option tls.port code 227 = unsigned integer 16;
      option tls.adn code 228 = domain-list;
      option tls.pin code 229 = text;
      option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
-     subnet6 xxxx:xxxx:xxxx:xxxx::/64 {
+     subnet6 2001:DB8:01::/64 {
          option tls.ipv6 2a04:b900:0:100::37;
          option tls.port 853;
          option tls.adn "getdnsapi.net";
@@ -557,16 +557,16 @@ A.1.  ISC DHCP Server Configuration
 
 
 
-Pusateri & Toorop       Expires November 3, 2018               [Page 10]
+Pusateri & Toorop       Expires November 4, 2018               [Page 10]
 
-Internet-Draft            DNS-TLS DHCPv6 Option                 May 2018
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 A.2.  ISC DHCP Client Configuration
 
 
          option space tls;
-         option tls.ipv6 code 226 = array of ip6-address;
+         option tls.ipv6 code 226 = ip6-address;
          option tls.port code 227 = unsigned integer 16;
          option tls.adn code 228 = domain-list;
          option tls.pin code 229 = text;
@@ -613,4 +613,4 @@ Authors' Addresses
 
 
 
-Pusateri & Toorop       Expires November 3, 2018               [Page 11]
+Pusateri & Toorop       Expires November 4, 2018               [Page 11]

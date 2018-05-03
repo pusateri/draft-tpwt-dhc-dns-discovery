@@ -1,0 +1,19 @@
+<![CDATA[
+  option space tls;
+  option tls.ipv6 code 226 = ip6-address;
+  option tls.port code 227 = unsigned integer 16;
+  option tls.adn code 228 = domain-list;
+  option tls.pin code 229 = text;
+  option dhcp6.tls-encapsulation code 225 = encapsulate tls;
+
+  subnet6 2001:DB8:01::/64 {
+      option tls.ipv6 2a04:b900:0:100::37;
+      option tls.port 853;
+      option tls.adn "getdnsapi.net";
+      option tls.pin "foxZRnIh9gZpWnl+zEiKa0EJ2rdCGroMWm02gaxSc9S=";
+
+      option tls.ipv6 2620:fe::fe;
+      option tls.port 853;
+      option tls.sni "dns.quad9.net";
+  }
+]]>
