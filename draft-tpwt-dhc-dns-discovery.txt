@@ -9,14 +9,14 @@ Expires: November 3, 2018                                     NLnet Labs
                                                              May 2, 2018
 
 
-               DHCPv6 Option for encrypted DNS Discovery
+                DHCPv6 Option for private DNS Discovery
                     draft-tpwt-dhc-dns-discovery-00
 
 Abstract
 
    This draft provides a series of DHCPv6 options for a DHCPv6 client to
    request from a DHCPv6 server to aid in configuring DNS servers that
-   support encrypted requests/responses.
+   support private requests/responses.
 
 Status of This Memo
 
