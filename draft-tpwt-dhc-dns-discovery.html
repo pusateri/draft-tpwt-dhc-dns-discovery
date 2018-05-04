@@ -647,7 +647,7 @@
 <h1 id="rfc.section.4.2">
 <a href="#rfc.section.4.2">4.2.</a> <a href="#section_opt_adn" id="section_opt_adn">ADN Option</a>
 </h1>
-<p id="rfc.section.4.2.p.1">The second is OPTION_ADN. This is a variable length string containing the Authentication Domain Name as specified in <a href="#RFC8310" class="xref">[RFC8310]</a>. This name MUST be verified in accordance with <a href="#RFC6125" class="xref">[RFC6125]</a> or subsequent updates to this document. If the client supports the TLS Server Name Indication (SNI) extension as defined in Section 3 of <a href="#RFC6066" class="xref">[RFC6066]</a>, the ADN SHOULD be used in this extension. It is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <a href="#RFC1035" class="xref">[RFC1035]</a>.  </p>
+<p id="rfc.section.4.2.p.1">The second is OPTION_ADN. This is a variable length string containing the Authentication Domain Name as specified in <a href="#RFC8310" class="xref">[RFC8310]</a>. This name MUST be verified in accordance with <a href="#RFC6125" class="xref">[RFC6125]</a> or subsequent updates to this document. The client SHOULD send the Authenticated Domain Name when establishing the TLS connection to the DNS server using the TLS Server Name Indication (SNI) extension as defined in Section 3 of <a href="#RFC6066" class="xref">[RFC6066]</a>. The use of OPTION_ADN by the server is OPTIONAL but strongly encouraged. The string is a DNS FQDN encoded according to Section 3.1 of <a href="#RFC1035" class="xref">[RFC1035]</a>.  </p>
 <div id="rfc.figure.5"></div>
 <div id="option_adn_art"></div>
 <pre>

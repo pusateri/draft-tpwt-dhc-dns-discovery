@@ -287,11 +287,12 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    The second is OPTION_ADN.  This is a variable length string
    containing the Authentication Domain Name as specified in [RFC8310].
    This name MUST be verified in accordance with [RFC6125] or subsequent
-   updates to this document.  If the client supports the TLS Server Name
-   Indication (SNI) extension as defined in Section 3 of [RFC6066], the
-   ADN SHOULD be used in this extension.  It is OPTIONAL but strongly
-   encouraged.  The string is a DNS FQDN encoded according to
-   Section 3.1 of [RFC1035].
+   updates to this document.  The client SHOULD send the Authenticated
+   Domain Name when establishing the TLS connection to the DNS server
+   using the TLS Server Name Indication (SNI) extension as defined in
+   Section 3 of [RFC6066].  The use of OPTION_ADN by the server is
+   OPTIONAL but strongly encouraged.  The string is a DNS FQDN encoded
+   according to Section 3.1 of [RFC1035].
 
 
         0                   1                   2                   3
@@ -329,7 +330,6 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
                            Figure 6: Port option
-
 
 
 
