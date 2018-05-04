@@ -5,8 +5,8 @@
 Internet Engineering Task Force                              T. Pusateri
 Internet-Draft                                              Unaffiliated
 Intended status: Informational                                 W. Toorop
-Expires: November 4, 2018                                     NLnet Labs
-                                                             May 3, 2018
+Expires: November 5, 2018                                     NLnet Labs
+                                                             May 4, 2018
 
 
                 DHCPv6 Options for private DNS Discovery
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 4, 2018.
+   This Internet-Draft will expire on November 5, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 1]
+Pusateri & Toorop       Expires November 5, 2018                [Page 1]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -75,13 +75,13 @@ Table of Contents
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   9
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .   9
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  10
-   Appendix A.  ISC DHCP Configuration Example . . . . . . . . . . .  10
-     A.1.  ISC DHCP Server Configuration . . . . . . . . . . . . . .  11
-     A.2.  ISC DHCP Client Configuration . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .  10
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  11
+   Appendix A.  ISC DHCPv6 Configuration Example . . . . . . . . . .  11
+     A.1.  ISC DHCPv6 Server Configuration . . . . . . . . . . . . .  11
+     A.2.  ISC DHCPv6 Client Configuration . . . . . . . . . . . . .  12
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 2]
+Pusateri & Toorop       Expires November 5, 2018                [Page 2]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -122,9 +122,9 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    private DNS configuration parameters obtained by a client via DHCPv6
    are not automatically trusted.  Trust is established in many ways or
    not at all.  The environment a client finds itself in will determine
-   how trustworthy the DHCP reply may or may not be.  There should be no
-   false sense of privacy derived from the presence of these options in
-   a DHCP reply.
+   how trustworthy the DHCPv6 reply may or may not be.  There should be
+   no false sense of privacy derived from the presence of these options
+   in a DHCPv6 reply.
 
    The following points may assist the DHCPv6 client:
 
@@ -144,7 +144,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 3.  DHCPv6 Encapsulating Options
 
-   Secure DNS DHCPv6 configuration parameters will be encapsulated in
+   Encrypted DNS DHCPv6 configuration parameters will be encapsulated in
    one or more of the following top level encapsulating options.  These
    options can be repeated as many times as necessary to configure a
    list of secure DNS servers with one secure server per encapsulation.
@@ -165,7 +165,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 3]
+Pusateri & Toorop       Expires November 5, 2018                [Page 3]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -221,7 +221,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 4]
+Pusateri & Toorop       Expires November 5, 2018                [Page 4]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -270,14 +270,14 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
                            Figure 4: IPv6 option
 
-   option-code:  OPTION_IPv6 (TBD)
+   option-code:  OPTION_IPV6 (TBD)
 
    option-len:  16 bytes
 
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 5]
+Pusateri & Toorop       Expires November 5, 2018                [Page 5]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -333,7 +333,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 6]
+Pusateri & Toorop       Expires November 5, 2018                [Page 6]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -381,7 +381,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in
    Section 4.4.
 
-   [[Q1: Should we allow OPTION_IPv6? --TJP]]
+   [[Q1: Should we allow OPTION_IPV6? --TJP]]
 
 
 
@@ -389,7 +389,7 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 7]
+Pusateri & Toorop       Expires November 5, 2018                [Page 7]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
@@ -426,29 +426,48 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 7.  Security Considerations
 
-   Compromising domain name resolution may provide a way to unknowingly
-   direct client network traffic to non-authentic service providers.
-   Before this specification existed, DHCPv6 domain name servers could
-   have directed DHCPv6 clients to compromised DNS servers.  Adding
-   encrypted DNS configuration parameters does not change this fact.
+   Compromising domain name resolution may provide a way to direct
+   client network traffic to non-authentic service providers.  Sending a
+   DNS client to a non-authentic DNS server could return DNS responses
+   with IPv6 addresses that do not represent the actual authoritative
+   AAAA records for the names queried but pretend to do so.  Then
+   applications on the client computer would attempt to connect to the
+   server carrying out man-in-the-middle or trojan attacks.  Before this
+   specification existed, DHCPv6 domain name servers could have directed
+   DHCPv6 clients to compromised DNS servers.  Adding encrypted DNS
+   configuration parameters does not change this fact.
 
-   There are ways to verify the integrity of the DNS responses for
-   messages received unencrypted.  The integrity of the responses must
-   still be questioned when the responses are received over an encrypted
-   DNS connection.
-
-   New, less obvious ways to mislead a client are possible with these
-   new options to pretend a client is talking to an authenticated DNS
-   server when, in fact, the client has been misled or mis-directed.
-   These new threats are the focus of this section.
-
+   There are ways to verify the integrity of unencrypted DNS responses
+   using DNSSEC if a client begins with the root trust anchor.  This
+   ensures the entire DNS root hasn't been replaced with a forgery.
 
 
 
-Pusateri & Toorop       Expires November 4, 2018                [Page 8]
+
+
+Pusateri & Toorop       Expires November 5, 2018                [Page 8]
 
 Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
+
+   In the same way, the integrity of the responses must still be
+   verified when the responses are received over an encrypted DNS
+   connection.
+
+   There are additional verification checks that can be done given the
+   additional parameters provided in the DHCPv6 options to increase the
+   likelihood a client is connecting to an authentic DNS recursive
+   resolver that are not possible if only the IPv6 address of the DNS
+   server is known.
+
+   When the ADN option is present, the client can use DNSSEC to validate
+   the address records for the DNS server and the matching
+   authentication domain name, followed by verifying the certificate of
+   the encrypted DNS Server through verification of the corresponding
+   TLSA records as described in DANE [RFC6698] and updated in [RFC7671].
+   If the SPKI PIN option is present, this provides an alternate or
+   additional method to check the integrity of the certificate of the
+   DNS server.
 
 8.  IANA Considerations
 
@@ -477,6 +496,16 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    Tirumaleswar Reddy for documenting the issue.  Thanks also to Ted
    Lemon for appropriate warnings about this work.
 
+
+
+
+
+
+Pusateri & Toorop       Expires November 5, 2018                [Page 9]
+
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
+
+
 10.  References
 
 10.1.  Normative References
@@ -495,17 +524,6 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-
-
-
-
-
-
-Pusateri & Toorop       Expires November 4, 2018                [Page 9]
-
-Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
-
-
    [RFC3315]  Droms, R., Ed., Bound, J., Volz, B., Lemon, T., Perkins,
               C., and M. Carney, "Dynamic Host Configuration Protocol
               for IPv6 (DHCPv6)", RFC 3315, DOI 10.17487/RFC3315, July
@@ -523,9 +541,26 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
               Security (TLS)", RFC 6125, DOI 10.17487/RFC6125, March
               2011, <https://www.rfc-editor.org/info/rfc6125>.
 
+   [RFC6698]  Hoffman, P. and J. Schlyter, "The DNS-Based Authentication
+              of Named Entities (DANE) Transport Layer Security (TLS)
+              Protocol: TLSA", RFC 6698, DOI 10.17487/RFC6698, August
+              2012, <https://www.rfc-editor.org/info/rfc6698>.
+
    [RFC7469]  Evans, C., Palmer, C., and R. Sleevi, "Public Key Pinning
               Extension for HTTP", RFC 7469, DOI 10.17487/RFC7469, April
               2015, <https://www.rfc-editor.org/info/rfc7469>.
+
+   [RFC7671]  Dukhovni, V. and W. Hardaker, "The DNS-Based
+              Authentication of Named Entities (DANE) Protocol: Updates
+              and Operational Guidance", RFC 7671, DOI 10.17487/RFC7671,
+              October 2015, <https://www.rfc-editor.org/info/rfc7671>.
+
+
+
+Pusateri & Toorop       Expires November 5, 2018               [Page 10]
+
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
+
 
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
@@ -549,25 +584,38 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
               DOI 10.17487/RFC3646, December 2003,
               <https://www.rfc-editor.org/info/rfc3646>.
 
-Appendix A.  ISC DHCP Configuration Example
+Appendix A.  ISC DHCPv6 Configuration Example
 
    The DHCPv6 options defined in this specification were tested with the
-   ISC DHCP server _dhcpd_ and client _dhclient_ version 4.4.1.  Using
+   ISC DHCPv6 server _dhcpd_ and client _dhclient_ version 4.4.1.  Using
    this version, it was possible to send a single DNS over TLS
-
-
-
-Pusateri & Toorop       Expires November 4, 2018               [Page 10]
-
-Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
-
-
    encapsulated option containing an IPv6 address, authentication domain
    name, port number, and SPKI pin.  Multiple servers using multiple DNS
    over TLS encapsulated options were not available via the client hooks
    script.
 
-A.1.  ISC DHCP Server Configuration
+A.1.  ISC DHCPv6 Server Configuration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pusateri & Toorop       Expires November 5, 2018               [Page 11]
+
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
      option space tls;
@@ -589,7 +637,7 @@ A.1.  ISC DHCP Server Configuration
      }
 
 
-A.2.  ISC DHCP Client Configuration
+A.2.  ISC DHCPv6 Client Configuration
 
 
          option space tls;
@@ -604,20 +652,6 @@ A.2.  ISC DHCP Client Configuration
 
 Authors' Addresses
 
-
-
-
-
-
-
-
-
-
-Pusateri & Toorop       Expires November 4, 2018               [Page 11]
-
-Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
-
-
    Tom Pusateri
    Unaffiliated
    Raleigh, NC  27608
@@ -625,6 +659,19 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
    Phone: +1 919 867 1330
    Email: pusateri@bangj.com
+
+
+
+
+
+
+
+
+
+
+Pusateri & Toorop       Expires November 5, 2018               [Page 12]
+
+Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
    Willem Toorop
@@ -669,4 +716,13 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
 
 
 
-Pusateri & Toorop       Expires November 4, 2018               [Page 12]
+
+
+
+
+
+
+
+
+
+Pusateri & Toorop       Expires November 5, 2018               [Page 13]

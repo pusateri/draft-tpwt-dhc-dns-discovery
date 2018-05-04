@@ -392,9 +392,9 @@
 <link href="#rfc.references" rel="Chapter" title="10 References">
 <link href="#rfc.references.1" rel="Chapter" title="10.1 Normative References">
 <link href="#rfc.references.2" rel="Chapter" title="10.2 Informative References">
-<link href="#rfc.appendix.A" rel="Chapter" title="A ISC DHCP Configuration Example">
-<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 ISC DHCP Server Configuration">
-<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 ISC DHCP Client Configuration">
+<link href="#rfc.appendix.A" rel="Chapter" title="A ISC DHCPv6 Configuration Example">
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 ISC DHCPv6 Server Configuration">
+<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 ISC DHCPv6 Client Configuration">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -403,7 +403,7 @@
 
   <meta name="dct.creator" content="Pusateri, T. and W. Toorop" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-tpwt-dhc-dns-discovery-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-03" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-04" />
   <meta name="dct.abstract" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
   <meta name="description" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
 
@@ -427,12 +427,12 @@
 <td class="right">W. Toorop</td>
 </tr>
 <tr>
-<td class="left">Expires: November 4, 2018</td>
+<td class="left">Expires: November 5, 2018</td>
 <td class="right">NLnet Labs</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 3, 2018</td>
+<td class="right">May 4, 2018</td>
 </tr>
 
     	
@@ -448,7 +448,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 4, 2018.</p>
+<p>This Internet-Draft will expire on November 5, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -494,11 +494,11 @@
 </li>
 <li>10.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
-</ul><li>Appendix A.   <a href="#rfc.appendix.A">ISC DHCP Configuration Example</a>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">ISC DHCPv6 Configuration Example</a>
 </li>
-<ul><li>A.1.   <a href="#rfc.appendix.A.1">ISC DHCP Server Configuration</a>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">ISC DHCPv6 Server Configuration</a>
 </li>
-<li>A.2.   <a href="#rfc.appendix.A.2">ISC DHCP Client Configuration</a>
+<li>A.2.   <a href="#rfc.appendix.A.2">ISC DHCPv6 Client Configuration</a>
 </li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
@@ -514,7 +514,7 @@
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> Trust</h1>
-<p id="rfc.section.2.p.1">Encrypting the DNS transport provides privacy of the information contained in the DNS requests/responses across the connection. It does not provide privacy at the endpoints of the connection. The private DNS configuration parameters obtained by a client via DHCPv6 are not automatically trusted. Trust is established in many ways or not at all. The environment a client finds itself in will determine how trustworthy the DHCP reply may or may not be. There should be no false sense of privacy derived from the presence of these options in a DHCP reply.</p>
+<p id="rfc.section.2.p.1">Encrypting the DNS transport provides privacy of the information contained in the DNS requests/responses across the connection. It does not provide privacy at the endpoints of the connection. The private DNS configuration parameters obtained by a client via DHCPv6 are not automatically trusted. Trust is established in many ways or not at all. The environment a client finds itself in will determine how trustworthy the DHCPv6 reply may or may not be. There should be no false sense of privacy derived from the presence of these options in a DHCPv6 reply.</p>
 <p id="rfc.section.2.p.2">The following points may assist the DHCPv6 client: </p>
 
 <ol>
@@ -528,7 +528,7 @@
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#encap_options" id="encap_options">DHCPv6 Encapsulating Options</a>
 </h1>
-<p id="rfc.section.3.p.1">Secure DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation.  This is permitted by Section 22 of <a href="#RFC3315" class="xref">[RFC3315]</a>. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</p>
+<p id="rfc.section.3.p.1">Encrypted DNS DHCPv6 configuration parameters will be encapsulated in one or more of the following top level encapsulating options. These options can be repeated as many times as necessary to configure a list of secure DNS servers with one secure server per encapsulation.  This is permitted by Section 22 of <a href="#RFC3315" class="xref">[RFC3315]</a>. There is no order implied by the order of options sent or received. It is up to the receiving client to determine which order to use the DNS server configurations.</p>
 <p id="rfc.section.3.p.2">The format for the <a href="#RFC7858" class="xref">DNS over TLS</a> encapsulating option code is:</p>
 <div id="rfc.figure.1"></div>
 <div id="dns_tls_encap"></div>
@@ -638,7 +638,7 @@
 
 <dl>
 <dt>option-code:</dt>
-<dd style="margin-left: 6">OPTION_IPv6 (TBD)</dd>
+<dd style="margin-left: 6">OPTION_IPV6 (TBD)</dd>
 <dt>option-len:</dt>
 <dd style="margin-left: 6">16 bytes</dd>
 </dl>
@@ -736,7 +736,7 @@
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> DHCPv6 DNS over HTTPS (DoH) Encapsulated Options</h1>
 <p id="rfc.section.6.p.1">The DNS over HTTPS top level OPTION_DNS_HTTPS encapsulation REQUIRES OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in <a href="#section_opt_spki" class="xref">Section 4.4</a>.</p>
-<p><a id="Q1" class="info">[Q1]<span class="info">TJP: Should we allow OPTION_IPv6?</span></a></p>
+<p><a id="Q1" class="info">[Q1]<span class="info">TJP: Should we allow OPTION_IPV6?</span></a></p>
 <h1 id="rfc.section.6.1">
 <a href="#rfc.section.6.1">6.1.</a> <a href="#section_opt_uri" id="section_opt_uri">URI Option</a>
 </h1>
@@ -768,9 +768,11 @@
 <p> </p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> Security Considerations</h1>
-<p id="rfc.section.7.p.1">Compromising domain name resolution may provide a way to unknowingly direct client network traffic to non-authentic service providers. Before this specification existed, DHCPv6 domain name servers could have directed DHCPv6 clients to compromised DNS servers. Adding encrypted DNS configuration parameters does not change this fact.</p>
-<p id="rfc.section.7.p.2">There are ways to verify the integrity of the DNS responses for messages received unencrypted. The integrity of the responses must still be questioned when the responses are received over an encrypted DNS connection.</p>
-<p id="rfc.section.7.p.3">New, less obvious ways to mislead a client are possible with these new options to pretend a client is talking to an authenticated DNS server when, in fact, the client has been misled or mis-directed. These new threats are the focus of this section.</p>
+<p id="rfc.section.7.p.1">Compromising domain name resolution may provide a way to direct client network traffic to non-authentic service providers. Sending a DNS client to a non-authentic DNS server could return DNS responses with IPv6 addresses that do not represent the actual authoritative AAAA records for the names queried but pretend to do so. Then applications on the client computer would attempt to connect to the server carrying out man-in-the-middle or trojan attacks. Before this specification existed, DHCPv6 domain name servers could have directed DHCPv6 clients to compromised DNS servers. Adding encrypted DNS configuration parameters does not change this fact.</p>
+<p id="rfc.section.7.p.2">There are ways to verify the integrity of unencrypted DNS responses using DNSSEC if a client begins with the root trust anchor. This ensures the entire DNS root hasn't been replaced with a forgery.</p>
+<p id="rfc.section.7.p.3">In the same way, the integrity of the responses must still be verified when the responses are received over an encrypted DNS connection.</p>
+<p id="rfc.section.7.p.4">There are additional verification checks that can be done given the additional parameters provided in the DHCPv6 options to increase the likelihood a client is connecting to an authentic DNS recursive resolver that are not possible if only the IPv6 address of the DNS server is known.</p>
+<p id="rfc.section.7.p.5">When the ADN option is present, the client can use DNSSEC to validate the address records for the DNS server and the matching authentication domain name, followed by verifying the certificate of the encrypted DNS Server through verification of the corresponding TLSA records as described in <a href="#RFC6698" class="xref">DANE</a> and updated in <a href="#RFC7671" class="xref">[RFC7671]</a>. If the SPKI PIN option is present, this provides an alternate or additional method to check the integrity of the certificate of the DNS server.</p>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> IANA Considerations</h1>
 <p id="rfc.section.8.p.1">This document identifies several new DHCPv6 Option Codes that require an assigned number.</p>
@@ -864,9 +866,19 @@
 <a>Saint-Andre, P.</a> and <a>J. Hodges</a>, "<a href="https://tools.ietf.org/html/rfc6125">Representation and Verification of Domain-Based Application Service Identity within Internet Public Key Infrastructure Using X.509 (PKIX) Certificates in the Context of Transport Layer Security (TLS)</a>", RFC 6125, DOI 10.17487/RFC6125, March 2011.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC6698">[RFC6698]</b></td>
+<td class="top">
+<a>Hoffman, P.</a> and <a>J. Schlyter</a>, "<a href="https://tools.ietf.org/html/rfc6698">The DNS-Based Authentication of Named Entities (DANE) Transport Layer Security (TLS) Protocol: TLSA</a>", RFC 6698, DOI 10.17487/RFC6698, August 2012.</td>
+</tr>
+<tr>
 <td class="reference"><b id="RFC7469">[RFC7469]</b></td>
 <td class="top">
 <a>Evans, C.</a>, <a>Palmer, C.</a> and <a>R. Sleevi</a>, "<a href="https://tools.ietf.org/html/rfc7469">Public Key Pinning Extension for HTTP</a>", RFC 7469, DOI 10.17487/RFC7469, April 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7671">[RFC7671]</b></td>
+<td class="top">
+<a>Dukhovni, V.</a> and <a>W. Hardaker</a>, "<a href="https://tools.ietf.org/html/rfc7671">The DNS-Based Authentication of Named Entities (DANE) Protocol: Updates and Operational Guidance</a>", RFC 7671, DOI 10.17487/RFC7671, October 2015.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7858">[RFC7858]</b></td>
@@ -892,11 +904,11 @@
 <a>Droms, R.</a>, "<a href="https://tools.ietf.org/html/rfc3646">DNS Configuration options for Dynamic Host Configuration Protocol for IPv6 (DHCPv6)</a>", RFC 3646, DOI 10.17487/RFC3646, December 2003.</td>
 </tr></tbody></table>
 <h1 id="rfc.appendix.A">
-<a href="#rfc.appendix.A">Appendix A.</a> <a href="#appendix_isc" id="appendix_isc">ISC DHCP Configuration Example</a>
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#appendix_isc" id="appendix_isc">ISC DHCPv6 Configuration Example</a>
 </h1>
-<p id="rfc.section.A.p.1">The DHCPv6 options defined in this specification were tested with the ISC DHCP server <em>dhcpd</em> and client <em>dhclient</em> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, port number, and SPKI pin. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</p>
+<p id="rfc.section.A.p.1">The DHCPv6 options defined in this specification were tested with the ISC DHCPv6 server <em>dhcpd</em> and client <em>dhclient</em> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, port number, and SPKI pin. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</p>
 <h1 id="rfc.appendix.A.1">
-<a href="#rfc.appendix.A.1">A.1.</a> ISC DHCP Server Configuration</h1>
+<a href="#rfc.appendix.A.1">A.1.</a> ISC DHCPv6 Server Configuration</h1>
 <pre>
             
   option space tls;
@@ -919,7 +931,7 @@
 
           </pre>
 <h1 id="rfc.appendix.A.2">
-<a href="#rfc.appendix.A.2">A.2.</a> ISC DHCP Client Configuration</h1>
+<a href="#rfc.appendix.A.2">A.2.</a> ISC DHCPv6 Client Configuration</h1>
 <pre>
             
   option space tls;
