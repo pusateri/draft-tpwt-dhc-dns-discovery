@@ -455,19 +455,21 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    connection.
 
    There are additional verification checks that can be done given the
-   additional parameters provided in the DHCPv6 options to increase the
-   likelihood a client is connecting to an authentic DNS recursive
-   resolver that are not possible if only the IPv6 address of the DNS
-   server is known.
+   additional parameters provided with these private DNS DHCPv6 options
+   to increase the likelihood a client is connecting to an authentic DNS
+   recursive resolver that are not possible if only the IPv6 address of
+   the DNS server is known:
 
-   When the ADN option is present, the client can use DNSSEC to validate
-   the address records for the DNS server and the matching
-   authentication domain name, followed by verifying the certificate of
-   the encrypted DNS Server through verification of the corresponding
-   TLSA records as described in DANE [RFC6698] and updated in [RFC7671].
-   If the SPKI PIN option is present, this provides an alternate or
-   additional method to check the integrity of the certificate of the
-   DNS server.
+   1.  When the ADN option is present, the client can use DNSSEC to
+       validate the address records for the DNS server and the matching
+       authentication domain name, followed by verifying the certificate
+       of the encrypted DNS Server through verification of the
+       corresponding TLSA records as described in DANE [RFC6698] and
+       updated in [RFC7671].
+
+   2.  If the SPKI PIN option is present, this provides an alternate or
+       additional method to check the integrity of the certificate of
+       the DNS server as described in Section 4.2 of [RFC7858].
 
 8.  IANA Considerations
 
@@ -495,8 +497,6 @@ Internet-Draft           DNS-TLS DHCPv6 Options                 May 2018
    Thanks to the authors Sara Dickinson, Daniel Kahn Gillmor, and
    Tirumaleswar Reddy for documenting the issue.  Thanks also to Ted
    Lemon for appropriate warnings about this work.
-
-
 
 
 

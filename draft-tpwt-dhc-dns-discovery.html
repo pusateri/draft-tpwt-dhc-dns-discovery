@@ -771,8 +771,13 @@
 <p id="rfc.section.7.p.1">Compromising domain name resolution may provide a way to direct client network traffic to non-authentic service providers. Sending a DNS client to a non-authentic DNS server could return DNS responses with IPv6 addresses that do not represent the actual authoritative AAAA records for the names queried but pretend to do so. Then applications on the client computer would attempt to connect to the server carrying out man-in-the-middle or trojan attacks. Before this specification existed, DHCPv6 domain name servers could have directed DHCPv6 clients to compromised DNS servers. Adding encrypted DNS configuration parameters does not change this fact.</p>
 <p id="rfc.section.7.p.2">There are ways to verify the integrity of unencrypted DNS responses using DNSSEC if a client begins with the root trust anchor. This ensures the entire DNS root hasn't been replaced with a forgery.</p>
 <p id="rfc.section.7.p.3">In the same way, the integrity of the responses must still be verified when the responses are received over an encrypted DNS connection.</p>
-<p id="rfc.section.7.p.4">There are additional verification checks that can be done given the additional parameters provided in the DHCPv6 options to increase the likelihood a client is connecting to an authentic DNS recursive resolver that are not possible if only the IPv6 address of the DNS server is known.</p>
-<p id="rfc.section.7.p.5">When the ADN option is present, the client can use DNSSEC to validate the address records for the DNS server and the matching authentication domain name, followed by verifying the certificate of the encrypted DNS Server through verification of the corresponding TLSA records as described in <a href="#RFC6698" class="xref">DANE</a> and updated in <a href="#RFC7671" class="xref">[RFC7671]</a>. If the SPKI PIN option is present, this provides an alternate or additional method to check the integrity of the certificate of the DNS server.</p>
+<p id="rfc.section.7.p.4">There are additional verification checks that can be done given the additional parameters provided with these private DNS DHCPv6 options to increase the likelihood a client is connecting to an authentic DNS recursive resolver that are not possible if only the IPv6 address of the DNS server is known:</p>
+<p></p>
+
+<ol>
+<li>When the ADN option is present, the client can use DNSSEC to validate the address records for the DNS server and the matching authentication domain name, followed by verifying the certificate of the encrypted DNS Server through verification of the corresponding TLSA records as described in <a href="#RFC6698" class="xref">DANE</a> and updated in <a href="#RFC7671" class="xref">[RFC7671]</a>.</li>
+<li>If the SPKI PIN option is present, this provides an alternate or additional method to check the integrity of the certificate of the DNS server as described in Section 4.2 of <a href="#RFC7858" class="xref">[RFC7858]</a>.</li>
+</ol>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> IANA Considerations</h1>
 <p id="rfc.section.8.p.1">This document identifies several new DHCPv6 Option Codes that require an assigned number.</p>
