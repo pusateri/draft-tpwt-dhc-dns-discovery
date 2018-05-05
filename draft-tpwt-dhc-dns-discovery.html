@@ -382,7 +382,6 @@
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 IPv6 Address Option">
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 ADN Option">
 <link href="#rfc.section.4.3" rel="Chapter" title="4.3 Port Option">
-<link href="#rfc.section.4.4" rel="Chapter" title="4.4 SPKI Pin Option">
 <link href="#rfc.section.5" rel="Chapter" title="5 DHCPv6 DNS over DTLS Encapsulated Options">
 <link href="#rfc.section.6" rel="Chapter" title="6 DHCPv6 DNS over HTTPS (DoH) Encapsulated Options">
 <link href="#rfc.section.6.1" rel="Chapter" title="6.1 URI Option">
@@ -403,7 +402,7 @@
 
   <meta name="dct.creator" content="Pusateri, T. and W. Toorop" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-tpwt-dhc-dns-discovery-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-04" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-05" />
   <meta name="dct.abstract" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
   <meta name="description" content="This draft provides a series of DHCPv6 options for a DHCPv6 client to request from a DHCPv6 server to aid in configuring DNS servers that support private requests/responses." />
 
@@ -427,12 +426,12 @@
 <td class="right">W. Toorop</td>
 </tr>
 <tr>
-<td class="left">Expires: November 5, 2018</td>
+<td class="left">Expires: November 6, 2018</td>
 <td class="right">NLnet Labs</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 4, 2018</td>
+<td class="right">May 5, 2018</td>
 </tr>
 
     	
@@ -448,7 +447,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 5, 2018.</p>
+<p>This Internet-Draft will expire on November 6, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -473,8 +472,6 @@
 <li>4.2.   <a href="#rfc.section.4.2">ADN Option</a>
 </li>
 <li>4.3.   <a href="#rfc.section.4.3">Port Option</a>
-</li>
-<li>4.4.   <a href="#rfc.section.4.4">SPKI Pin Option</a>
 </li>
 </ul><li>5.   <a href="#rfc.section.5">DHCPv6 DNS over DTLS Encapsulated Options</a>
 </li>
@@ -701,47 +698,18 @@
 </dl>
 
 <p> </p>
-<h1 id="rfc.section.4.4">
-<a href="#rfc.section.4.4">4.4.</a> <a href="#section_opt_spki" id="section_opt_spki">SPKI Pin Option</a>
-</h1>
-<p id="rfc.section.4.4.p.1">The last option that can be included in the top level OPTION_DNS_TLS is OPTION_SPKI_PIN. This is a variable length string containing a base64 encoded Subject Public Key Info (SPKI) fingerprint as described in <a href="#RFC7469" class="xref">[RFC7469]</a>. OPTION_SPKI_PIN is OPTIONAL.  </p>
-<div id="rfc.figure.7"></div>
-<div id="option_spki_art"></div>
-<pre>
-       
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |        OPTION_SPKI_PIN        |         option-length         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    .                         server SPKI PIN                       .
-    .                        (variable length)                      .
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        
-       </pre>
-<p class="figure">Figure 7: SPKI PIN option</p>
-<p></p>
-
-<dl>
-<dt>option-code:</dt>
-<dd style="margin-left: 6">OPTION_SPKI_PIN (TBD)</dd>
-<dt>option-len:</dt>
-<dd style="margin-left: 6">Length of base 64 encoded string</dd>
-</dl>
-
-<p> </p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> DHCPv6 DNS over DTLS Encapsulated Options</h1>
-<p id="rfc.section.5.p.1">DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <a href="#section_opt_ipv6" class="xref">Section 4.1</a> is REQUIRED. OPTION_ADN defined in <a href="#section_opt_adn" class="xref">Section 4.2</a> is OPTIONAL. OPTION_PORT defined in <a href="#section_opt_port" class="xref">Section 4.3</a> is OPTIONAL. Finally, OPTION_SPKI_PIN defined in <a href="#section_opt_spki" class="xref">Section 4.4</a> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</p>
+<p id="rfc.section.5.p.1">DNS over DTLS has the exact same set of possible DHCPv6 options as DNS over TLS. The OPTION_IPV6 defined in <a href="#section_opt_ipv6" class="xref">Section 4.1</a> is REQUIRED. OPTION_ADN defined in <a href="#section_opt_adn" class="xref">Section 4.2</a> is OPTIONAL. OPTION_PORT defined in <a href="#section_opt_port" class="xref">Section 4.3</a> is OPTIONAL. Please refer the these sections for their definitions and descriptions.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> DHCPv6 DNS over HTTPS (DoH) Encapsulated Options</h1>
-<p id="rfc.section.6.p.1">The DNS over HTTPS top level OPTION_DNS_HTTPS encapsulation REQUIRES OPTION_URI and MAY be accompanied by an OPTION_SPKI_PIN as defined in <a href="#section_opt_spki" class="xref">Section 4.4</a>.</p>
+<p id="rfc.section.6.p.1">The DNS over HTTPS top level OPTION_DNS_HTTPS encapsulation has only one option defined at this time which is OPTION_URI. This option is REQUIRED.</p>
 <p><a id="Q1" class="info">[Q1]<span class="info">TJP: Should we allow OPTION_IPV6?</span></a></p>
 <h1 id="rfc.section.6.1">
 <a href="#rfc.section.6.1">6.1.</a> <a href="#section_opt_uri" id="section_opt_uri">URI Option</a>
 </h1>
 <p id="rfc.section.6.1.p.1">OPTION_URI includes a server URI string that provides the necessary components to connect to a DNS over HTTPS server as defined in <a href="#I-D.ietf-doh-dns-over-https" class="xref">[I-D.ietf-doh-dns-over-https]</a>. Note that the DNS over HTTPS specification requires a server to respond to both GET and POST methods. The  URI MUST NOT include the query component beginning with a "?" and including the "dns" variable that is used in a GET method request. It is up to the client to decide whether to issue a GET or POST method in the HTTP request. Therefore, the client is responsible for appending the "?" and "dns" variable along with its base64 encoded value to the URI for GET method HTTP requests.</p>
-<div id="rfc.figure.8"></div>
+<div id="rfc.figure.7"></div>
 <div id="option_uri_art"></div>
 <pre>
        
@@ -755,7 +723,7 @@
   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         
        </pre>
-<p class="figure">Figure 8: URI option</p>
+<p class="figure">Figure 7: URI option</p>
 <p></p>
 
 <dl>
@@ -776,7 +744,7 @@
 
 <ol>
 <li>When the ADN option is present, the client can use DNSSEC to validate the address records for the DNS server and the matching authentication domain name, followed by verifying the certificate of the encrypted DNS Server through verification of the corresponding TLSA records as described in <a href="#RFC6698" class="xref">DANE</a> and updated in <a href="#RFC7671" class="xref">[RFC7671]</a>.</li>
-<li>If the SPKI PIN option is present, this provides an alternate or additional method to check the integrity of the certificate of the DNS server as described in Section 4.2 of <a href="#RFC7858" class="xref">[RFC7858]</a>.</li>
+<li>There is intentionally no option for the SPKI pin as defined in <a href="#RFC7469" class="xref">[RFC7469]</a> and usage as related to DNS as described in Section 4.2 of <a href="#RFC7858" class="xref">[RFC7858]</a>. This is because there is no way for a client to check the integrity of the pin when received from the network operator via DHCPv6. The SPKI pin can still be used to validate a private DNS server certificate but the SPKI pin must be obtained out of band through a trusted method to be useful for verification.</li>
 </ol>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> IANA Considerations</h1>
@@ -819,11 +787,6 @@
 <td class="left">OPTION_PORT</td>
 <td class="center">TBD</td>
 <td class="left"><a href="#section_opt_port" class="xref">Section 4.3</a></td>
-</tr>
-<tr>
-<td class="left">OPTION_SPKI_PIN</td>
-<td class="center">TBD</td>
-<td class="left"><a href="#section_opt_spki" class="xref">Section 4.4</a></td>
 </tr>
 <tr>
 <td class="left">OPTION_URI</td>
@@ -911,7 +874,7 @@
 <h1 id="rfc.appendix.A">
 <a href="#rfc.appendix.A">Appendix A.</a> <a href="#appendix_isc" id="appendix_isc">ISC DHCPv6 Configuration Example</a>
 </h1>
-<p id="rfc.section.A.p.1">The DHCPv6 options defined in this specification were tested with the ISC DHCPv6 server <em>dhcpd</em> and client <em>dhclient</em> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, port number, and SPKI pin. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</p>
+<p id="rfc.section.A.p.1">The DHCPv6 options defined in this specification were tested with the ISC DHCPv6 server <em>dhcpd</em> and client <em>dhclient</em> version 4.4.1. Using this version, it was possible to send a single DNS over TLS encapsulated option containing an IPv6 address, authentication domain name, and port number. Multiple servers using multiple DNS over TLS encapsulated options were not available via the client hooks script.</p>
 <h1 id="rfc.appendix.A.1">
 <a href="#rfc.appendix.A.1">A.1.</a> ISC DHCPv6 Server Configuration</h1>
 <pre>
@@ -920,18 +883,14 @@
   option tls.ipv6 code 226 = ip6-address;
   option tls.port code 227 = unsigned integer 16;
   option tls.adn code 228 = domain-list;
-  option tls.pin code 229 = text;
   option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
   subnet6 2001:DB8:01::/64 {
       option tls.ipv6 2a04:b900:0:100::37;
-      option tls.port 853;
       option tls.adn "getdnsapi.net";
-      option tls.pin "foxZRnIh9gZpWnl+zEiKa0EJ2rdCGroMWm02gaxSc9S=";
 
       option tls.ipv6 2620:fe::fe;
-      option tls.port 853;
-      option tls.sni "dns.quad9.net";
+      option tls.adn "dns.quad9.net";
   }
 
           </pre>
@@ -943,7 +902,6 @@
   option tls.ipv6 code 226 = ip6-address;
   option tls.port code 227 = unsigned integer 16;
   option tls.adn code 228 = domain-list;
-  option tls.pin code 229 = text;
   option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
   request dhcp6.tls-encapsulation;
