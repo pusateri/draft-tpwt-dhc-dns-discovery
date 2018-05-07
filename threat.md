@@ -1,8 +1,8 @@
 # Threat analysis of DHCP private DNS discovery options
 
-New DHCPv6 options for distributing private DNS configuration parameters are proposed in order to mitigate some of the current vulnerabilities associated with DHCP DNS server IP address-only distribution.
+New DHCP options for distributing private DNS configuration parameters are proposed in order to mitigate some of the current vulnerabilities associated with DHCP DNS server IP address-only distribution.
 
-For this discussion, a distinction will be made between authenticating a DNS server and establishing a trust relationship with the DNS server. A client may be able to verify the DNS server is authentic but this makes no claims as to its trustworthiness. A trust relationship is established in different ways or not at all and it may require out of band mechanisms to establish that trust. Trust isn't automatically established by a DHCP reply, but it may be given the environement the client is operating in.
+For this discussion, a distinction will be made between authenticating a DNS server and establishing a trust relationship with the DNS server. A client may be able to verify the DNS server is authentic but this makes no claims as to its trustworthiness. A trust relationship is established in different ways or not at all and it may require out of band mechanisms to establish that trust. Trust isn't automatically established by a DHCP reply, but it may be given the environment the client is operating in.
 
 ## Data to be protected
 
@@ -10,7 +10,7 @@ For this discussion, a distinction will be made between authenticating a DNS ser
 
 ## Prior vulnerabilities
 
-The following vulnerabilities exist prior to the addition of additional DHCPv6 private DNS discovery options.
+The following vulnerabilities exist prior to the addition of additional DHCP private DNS discovery options.
 
 1. (information disclosure) - the servers associated with these IP addresses are meant to be used unencrypted over UDP and fallback to TCP under certain error conditions exposing the queries to local observation.
 2. (spoofing) - network administrators send out DNS server IP address information only providing no external means for verification. These DNS servers are not guaranteed to be the actual servers represented by the network administrators due to spoofing or man in the middle attacks.
@@ -39,7 +39,7 @@ Adding a verifyable authentication domain name increases the ability to authenti
 
 ## Conclusion
 
-1. The addition of DNSSEC provides the biggest gain in server identity verification
+1. The addition of DNSSEC provides the biggest gain in server identity verification whether or not the DNS requests/responses are encrypted.
 2. having an authentication domain name provides additional information to ease the verification and allows missing PTR records for the name server address or a different name than the TLS Server Name Indication.
 3. Knowing for sure that a private DNS server exists in some form provides for a quicker response than having to search an existing DNS name server for privacy options
 
