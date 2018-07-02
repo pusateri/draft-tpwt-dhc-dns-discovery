@@ -39,7 +39,7 @@ Adding a verifyable authentication domain name increases the ability to authenti
 
 ## Conclusion
 
-1. The addition of DNSSEC provides the biggest gain in server identity verification whether or not the DNS requests/responses are encrypted.
-2. having an authentication domain name provides additional information to ease the verification and allows missing PTR records for the name server address or a different name than the TLS Server Name Indication.
-3. Knowing for sure that a private DNS server exists in some form provides for a quicker response than having to search an existing DNS name server for privacy options
+* The addition of DNSSEC provides the biggest gain in server identity verification whether or not the DNS requests/responses are encrypted. Denial of existence records (NSEC/NSEC3/NSEC5) provide a means to detect tampering by filtering or insertion.
+* having an authentication domain name provides additional information to ease the verification and allows missing PTR records for the name server address or a different name than the TLS Server Name Indication.
+* Knowing for sure that a private DNS server exists in some form provides for a quicker response than having to search an existing DNS name server for privacy options
 
