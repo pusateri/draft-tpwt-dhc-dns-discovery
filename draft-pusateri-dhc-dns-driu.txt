@@ -10,7 +10,7 @@ Expires: January 3, 2019                                      NLnet Labs
 
 
                 DHCPv6 Options for private DNS Discovery
-                    draft-tpwt-dhc-dns-discovery-00
+                     draft-pusateri-dhc-dns-driu-00
 
 Abstract
 
