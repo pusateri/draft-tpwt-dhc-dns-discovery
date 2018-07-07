@@ -2,7 +2,7 @@
   option space tls;
   option tls.ipv6 code 226 = ip6-address;
   option tls.port code 227 = unsigned integer 16;
-  option tls.adn code 228 = domain-list;
+  option tls.adn code 228 = text;
   option dhcp6.tls-encapsulation code 225 = encapsulate tls;
 
   request dhcp6.tls-encapsulation;
