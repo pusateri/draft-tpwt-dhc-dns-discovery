@@ -4,9 +4,17 @@ New DHCP options for distributing private DNS configuration parameters are propo
 
 For this discussion, a distinction will be made between authenticating a DNS server and establishing a trust relationship with the DNS server. A client may be able to verify the DNS server is authentic but this makes no claims as to its trustworthiness. A trust relationship is established in different ways or not at all and it may require out of band mechanisms to establish that trust. Trust isn't automatically established by a DHCP reply, but it may be given the environment the client is operating in.
 
-## Data to be protected
+## Threats
 
-1. DNS queries associated with an IP address or that can be associated with a client identifier
+1. DNS queries associated with an IP address or that can be associated with a client identifier can be monitored
+    This includes the following attributes:
+        a. source / destination IP addresses (IPv4 or IPv6)
+        b. query name
+        c. query type
+        d. query timing
+        e. EDNS client subnet (not normally sent from stub resolver)
+2. Denial of service
+3. Connections subverted to decoys
 
 ## Prior vulnerabilities
 
